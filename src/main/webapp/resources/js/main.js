@@ -18,6 +18,13 @@ $(document).ready(function() {
 			}
 	});
 
+
+	$('#inputSearchCompany').keyup(function(){
+		var str_search = $(this).val();
+		js_tree.jstree('search', str_search);
+	});
+
+
     $('#dialogAddCompany').dialog({
 			autoOpen: false,
 			modal: true,
@@ -116,10 +123,15 @@ $(document).ready(function() {
 						'data': data,
 					},
 
-					'plugins': ['contextmenu'],
+					'plugins': ['contextmenu', 'search'],
 
 					'contextmenu': {
 						'items': items
+					},
+
+					'search': {
+						'case_insensitive': true,
+						'show_only_matches': true
 					}
     });
 }
