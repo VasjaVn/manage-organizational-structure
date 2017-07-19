@@ -1,5 +1,5 @@
 body {
-    background: url('resources/images/background.png');
+    background: url('../images/background.png');
     color: blue;
 }
 
