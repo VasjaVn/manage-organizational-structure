@@ -5,15 +5,19 @@
     <link rel='stylesheet' href='resources/css/jstree/style.min.css'>
     <link rel='stylesheet' href='resources/css/ui/jquery-ui.css'>
 
-    <script src='resources/js/jquery-3.2.1.min.js'></script>
-    <script src='resources/js/jstree.min.js'></script>
-    <script src='resources/js/jquery-ui.js'></script>
+    <link rel='stylesheet' href='resources/css/style.css'>
+
+    <script src='resources/js/external/jquery-3.2.1.min.js'></script>
+    <script src='resources/js/external/jquery-ui.js'></script>
+    <script src='resources/js/external/jstree.min.js'></script>
 
     <script src='resources/js/contextmenu-items.js'></script>
     <script src='resources/js/main.js'></script>
 </head>
 <body>
-    <h1>MANAGE ORGANIZATIONAL STRUCTURE</h1>
+	<center>
+		<h1 class='title'>MANAGE ORGANIZATIONAL STRUCTURE</h1>
+	</center>
 
     <div>
         <button id='btnAddMainCompany' class='ui-button ui-corner-all ui-widget'>Add Main Company</button>

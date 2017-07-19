@@ -1,0 +1,8 @@
+body {
+    background: url('resources/images/background.png');
+    color: blue;
+}
+
+.title {
+    font-size: 52px;
+}
