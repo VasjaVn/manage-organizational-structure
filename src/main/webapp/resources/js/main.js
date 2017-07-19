@@ -35,7 +35,7 @@ $(document).ready(function() {
 							text: 'Ok',
 							click: function() {
 								addCompany();
-								$(this).dialog('close');
+								//$(this).dialog('close');
 							}
 						},
 						{
@@ -57,7 +57,7 @@ $(document).ready(function() {
 							text: 'Ok',
 							click: function() {
 								editCompany();
-								$(this).dialog('close');
+								//$(this).dialog('close');
 							}
 						},
 						{
@@ -144,9 +144,13 @@ $(document).ready(function() {
  *										ADD_COMPANY
  *****************************************************************************************************/
 function addCompany() {
-	var name_company        = $('#dialogAddCompany #nameCompany').val();
+	var name_company        = $.trim( $('#dialogAddCompany #nameCompany').val() );
 	var earnings_company    = $('#dialogAddCompany #earningsCompany').val();
 	var is_add_main_company = $('#dialogAddCompany #isMainCompany').prop('checked');
+
+	if ( !isCorrectCompanyData(name_company, earnings_company) ) {
+		return;
+	}
 
 	var selected_node_id    = $('#dialogAddCompany').data('selected_node_id');
 
@@ -187,6 +191,8 @@ function addCompany() {
 				alert('error');
 			}
 	});
+
+	$('#dialogAddCompany').dialog('close');
 }
 
 
@@ -199,8 +205,12 @@ function editCompany() {
 	var cur_earnings_company   = $('#dialogEditCompany').data('cur_earnings_company');
 	var total_earnings_company = $('#dialogEditCompany').data('total_earnings_company');
 
-	var new_name_company     = $('#dialogEditCompany #nameCompanyE').val();
+	var new_name_company     = $.trim($('#dialogEditCompany #nameCompanyE').val());
 	var new_earnings_company = $('#dialogEditCompany #earningsCompanyE').val();
+
+	if ( !isCorrectCompanyData(new_name_company, new_earnings_company) ) {
+		return;
+	}
 
 	var is_name_changed = cur_name_company.localeCompare(new_name_company) != 0;
 	var is_earnings_changed = cur_earnings_company != new_earnings_company;
@@ -246,6 +256,8 @@ function editCompany() {
 				}
 		});
 	}
+
+	$('#dialogEditCompany').dialog('close');
 }
 
 /*****************************************************************************************************
@@ -298,6 +310,25 @@ function removeCompanyHelper(node_id) {
 function nodeHasChildren(node_id) {
 	var arr_children_ids = js_tree.jstree('get_node', node_id)['children'];
 	return (arr_children_ids.length != 0)
+}
+
+
+/*****************************************************************************************************
+ *								IS_CORRECT_COMPANY_DATA
+ *****************************************************************************************************/
+function isCorrectCompanyData(name_company, earnings_company) {
+	var is_name_company_correct = ( name_company.length != 0 && name_company.indexOf('|') == -1 ) ? true : false;
+	var is_earnings_company_correct = ($.isNumeric(earnings_company) && parseInt(earnings_company) >= 0 ) ? true : false;
+
+	var text = '';
+	if ( !is_name_company_correct ) { text += 'Enter correct name of company!\n'; }
+	if ( !is_earnings_company_correct ) { text += 'Enter correct earnings of company!\n'; }
+
+	var is_correct_company_data = is_name_company_correct && is_earnings_company_correct;
+
+	if ( !is_correct_company_data ) { alert(text); }
+
+	return is_correct_company_data;
 }
 
 
