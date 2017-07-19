@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	js_tree              = $('#jsTree');
-	js_tree_is_expanded  = false;
+	js_tree_is_expanded  = true;
 	js_tree_root_node_id = '#';
 
 	$.ajax({
@@ -133,7 +133,10 @@ $(document).ready(function() {
 						'case_insensitive': true,
 						'show_only_matches': true
 					}
-    });
+
+    }).bind('loaded.jstree', function (event, data) {
+								$(this).jstree('open_all');
+	});
 }
 
 
