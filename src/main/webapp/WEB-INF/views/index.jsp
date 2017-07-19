@@ -26,6 +26,10 @@
 
     <hr>
 
+	<div class='ui-widget'>
+		<input id='inputSearchCompany' size='50' placeholder='input name company for search' />
+	</div>
+
     <div id='jsTree'></div>
 
     <div id='dialogAddCompany'>
