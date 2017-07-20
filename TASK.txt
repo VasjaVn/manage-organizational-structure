@@ -1,0 +1,27 @@
+Problem
+You are designing a web application that manages organizational structure for parent and child companies.
+Each company has two properties, they are company name and estimated annual earnings.
+There are two types of companies: 1- Main company, 2 - Subsidiary company.
+The company can belong only to one company but can have a few child companies.
+
+
+Requirements
+- The application should allow a user to view/add/edit/delete any company.
+- Company name and estimated earnings should be stored in database
+- Show companies tree
+
+Example:
+Name | Company Estimated Earnings | Company Estimated Earnings + Child Companies(on all levels) Estimated Earnings
+If you edit earnings of Company3 from 5 to 10, total earnings of Company1 should be updated automatically from 53 to 58. If you add Company8 as child of Company3, total of Company1 should be updated as well.
+
+ -Company1 | 25K$ | 53K$
+  --Company2 | 13K$ | 18K$
+   ---Company3 | 5K$
+  --Company4 | 10K$
+-Company5 | 10K$ | 30K$
+--Company6 | 15K$
+--Company7 | 5K$
+
+- Nesting level is not limited
+- Companies quantity on each level is unlimited
+- Single page approach should be used.
