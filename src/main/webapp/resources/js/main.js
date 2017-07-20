@@ -69,6 +69,21 @@ $(document).ready(function() {
 			]
     });
 
+    $('#dialogIncorrectCompanyData').dialog({
+			autoOpen: false,
+			modal: true,
+			title: 'Incorrect Company Data',
+			width: 400,
+			buttons: [
+						{
+							text: 'Ok',
+							click: function() {
+								$(this).dialog('close');
+							}
+						}
+			]
+    });
+
 	$('#dialogConfirmRemoveCompany').dialog({
 			autoOpen: false,
 			modal: true,
@@ -320,13 +335,20 @@ function isCorrectCompanyData(name_company, earnings_company) {
 	var is_name_company_correct = ( name_company.length != 0 && name_company.indexOf('|') == -1 ) ? true : false;
 	var is_earnings_company_correct = ($.isNumeric(earnings_company) && parseInt(earnings_company) >= 0 ) ? true : false;
 
-	var text = '';
-	if ( !is_name_company_correct ) { text += 'Enter correct name of company!\n'; }
-	if ( !is_earnings_company_correct ) { text += 'Enter correct earnings of company!\n'; }
+	if ( !is_name_company_correct ) {
+		$('#txtIncorrectName').html('Enter correct name of company!');
+	} else {
+		$('#txtIncorrectName').html('');
+	}
+
+	if ( !is_earnings_company_correct ) {
+		$('#txtIncorrectEarnings').html('Enter correct earnings of company!');
+	} else {
+		$('#txtIncorrectEarnings').html('');
+	}
 
 	var is_correct_company_data = is_name_company_correct && is_earnings_company_correct;
-
-	if ( !is_correct_company_data ) { alert(text); }
+	if ( !is_correct_company_data ) { $('#dialogIncorrectCompanyData').dialog('open'); }
 
 	return is_correct_company_data;
 }
@@ -374,8 +396,8 @@ function showDialogAddCompany(is_create_only_main_company) {
 	if ( is_create_only_main_company ) {
 		$('#dialogAddCompany #isMainCompany').prop('disabled', 'disabled');
 	} else {
-      	$('#dialogAddCompany #isMainCompany').removeAttr('disabled');
-    }
+		$('#dialogAddCompany #isMainCompany').removeAttr('disabled');
+	}
 
 	$('#dialogAddCompany').dialog('open');
 }

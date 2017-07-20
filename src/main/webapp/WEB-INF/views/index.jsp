@@ -68,5 +68,10 @@
             This company will be deleted with children companies. Are you sure?
         </p>
     </div>
+
+    <div id='dialogIncorrectCompanyData'>
+		<div id='txtIncorrectName'></div>
+		<div id='txtIncorrectEarnings'></div>
+    </div>
 </body>
 </html>
