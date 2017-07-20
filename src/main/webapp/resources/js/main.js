@@ -373,7 +373,9 @@ function showDialogAddCompany(is_create_only_main_company) {
 
 	if ( is_create_only_main_company ) {
 		$('#dialogAddCompany #isMainCompany').prop('disabled', 'disabled');
-	}
+	} else {
+      	$('#dialogAddCompany #isMainCompany').removeAttr('disabled');
+    }
 
 	$('#dialogAddCompany').dialog('open');
 }
