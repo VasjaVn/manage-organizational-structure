@@ -151,7 +151,9 @@ $(document).ready(function() {
 
     }).bind('loaded.jstree', function (event, data) {
 								$(this).jstree('open_all');
-	});
+	}).bind('hover_node.jstree',function(e,data){
+      							$('#' + data.node.id).prop('title', 'Name | Earnings | Total_Earnings');
+    });
 }
 
 
