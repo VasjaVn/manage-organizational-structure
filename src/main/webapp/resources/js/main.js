@@ -153,6 +153,11 @@ $(document).ready(function() {
 								$(this).jstree('open_all');
 	}).bind('hover_node.jstree',function(e,data){
       							$('#' + data.node.id).prop('title', 'Name | Earnings | Total_Earnings');
+    }).bind("dblclick.jstree", function (event) {
+      							var node_id = $(this).jstree('get_selected')[0];
+      							if( $(this).jstree('is_leaf', node_id) ) {
+      								showDialogEditCompany();
+      							}
     });
 }
 
