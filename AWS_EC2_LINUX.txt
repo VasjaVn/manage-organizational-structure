@@ -1,0 +1,59 @@
+POSGRESQL:
+----------
+$ sudo yum install postgresql postgresql-server postgresql-devel postgresql-contrib postgresql-docs
+
+$ sudo service postgresql initdb
+
+$ sudo vim /var/lib/pgsql/data/pg_hda.conf
+-------------------------------------------------------
+TYPE   DATABASE            USER      ADDRESS     METHOD
+#local  db_mng_org_struct   postgres              md5
+local  all                all                   trust
+#host   all                all       0.0.0.0/0   trust
+-------------------------------------------------------
+
+$ sudo vim /var/lib/pgsql/data/postgresql.conf
+---------------------------------------------
+listen_address = '*'
+port = 5432
+---------------------------------------------
+
+$ sudo chkconfig postgresql on
+
+$ sudo service postgresql start
+
+$ psql -U postgres
+postgres=# ALTER USER postgres WITH PASSWORD 'postgres';
+postgres=# \q
+
+$ psql -U postgres -f {path_to_db_sql_script}
+===================================================================================================
+
+
+TOMCAT7:
+--------
+$ sudo yum install tomcat7-webapps tomcat7-docs-webapp tomcat7-admin-webapps
+
+$ sudo chmod 777 /var/lib/tomcat7/webapps
+
+$ sudo vim /usr/share/tomcat7/conf/tomcat7.conf
+---------------------------------------------
+TOMCAT_USER='root'
+---------------------------------------------
+
+$ sudo vim /usr/share/tomcat7/conf/server.xml
+---------------------------------------------
+<Connector port='80'protocol='HTTP/1.1'
+           connectionTimeout='20000'
+           redirectPort='8443'>
+
+<Connector executor='tomcatThreadPool'
+           port='80'protocol='HTTP/1.1'
+           connectionTimeout='20000'
+           redirectPort='8443'>
+---------------------------------------------
+
+$ sudo chkconfig tomcat7 on
+
+$ sudo service tomcat7 start
+===================================================================================================
